@@ -16,7 +16,9 @@ const connect = () => {
         throw err;
     })
 }
-app.use("api/auth",authRoutes)
+
+app.use(express.json())
+app.use("/api/auth",authRoutes)
 app.use("/api/users",userRoutes)
 app.use("/api/videos",videoRoutes)
 app.use("/api/comments",commentRoutes)
