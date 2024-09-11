@@ -2,6 +2,8 @@ import mongoose from "mongoose"
 import User from "../models/User.js"
 import bcrypt from "bcrypt"
 import { createError } from "../error.js";
+import jwt from "jsonwebtoken";
+import cookieParser from "cookie-parser";
 
 export const signup = async (req,res,next) => {
     // console.log(req.body)
@@ -28,7 +30,14 @@ export const signin = async (req, res, next) => {
 
         if (!isCorrect) return next(createError(401, "Invalid credentials"));
 
-        res.status(200).json({ message: "Login successful" });
+        // res.status(200).json({ message: "Login successful" });
+        // create jsonwebtoken
+        const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET);
+        const {password, ...others} = user._doc;
+
+        res.cookie("access",token, {
+            httpOnly:true
+        }).status(200).json(others)
     } catch (error) {
         next(error);
     }
