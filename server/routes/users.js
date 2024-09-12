@@ -10,22 +10,22 @@ router.put("/:id", verifyToken ,update)
 router.get("/find/:id", getUser)
 
 //delete user
-router.delete("/:id", deleteUser)
+router.delete("/:id",verifyToken, deleteUser)
 
 //subscribe
 
-router.put("/subscribe/:id", subscribe)
+router.put("/subscribe/:id", verifyToken ,subscribe)
 
 //unsubscribe
 
-router.put("/unsubscribe/:id", unsubscribe)
+router.put("/unsubscribe/:id", verifyToken ,unsubscribe)
 //like a video
 
-router.put("/like/:videoId", like)
+router.put("/like/:videoId", verifyToken ,like)
 
 //dislike a video
 
-router.put("/dislike/:videoId", dislike)
+router.put("/dislike/:videoId", verifyToken ,dislike)
 
 
 export default router;
