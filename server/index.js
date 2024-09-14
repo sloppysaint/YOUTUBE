@@ -6,6 +6,7 @@ import commentRoutes from "./routes/comments.js"
 import videoRoutes from "./routes/videos.js"
 import authRoutes from "./routes/auth.js"
 import cookieParser from "cookie-parser"
+import { Subscribe } from "./controllers/video.js"
 const app = express()
 
 dotenv.config()
@@ -24,6 +25,7 @@ app.use("/api/auth",authRoutes)
 app.use("/api/users",userRoutes)
 app.use("/api/videos",videoRoutes)
 app.use("/api/comments",commentRoutes)
+app.use("/api/sub", Subscribe)
 
 app.use((err,req,res,next)=>{
     const status = err.status || 500
