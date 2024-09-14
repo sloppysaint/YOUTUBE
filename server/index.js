@@ -7,8 +7,9 @@ import videoRoutes from "./routes/videos.js"
 import authRoutes from "./routes/auth.js"
 import cookieParser from "cookie-parser"
 import { Subscribe } from "./controllers/video.js"
+import cors from "cors"
 const app = express()
-
+app.use(cors({ origin: 'http://localhost:3000' }));
 dotenv.config()
 
 const connect = () => {
